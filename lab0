@@ -1,3 +1,11 @@
+//variabes of dataset
+
+length(present)
+
+//remove multiple objects with a givven pattern in name
+
+rm(list = ls(pattern = "tes"))      //objects contains "tes"
+
 // view just counts 
 
 present$girls
@@ -6,3 +14,32 @@ present$girls
 
 sum(present$girls)
 
+// plot over year
+
+plot(present$year, present$girls, type = "l") // type = "l" for line
+
+//max year
+
+present$sum<- present$boys + present$girls
+order(present$sum, decreasing = T)
+present[22,]
+
+// proportion of boys over time
+
+present$boysPercent<- present$boys/present$sum
+plot(present$year, present$boysPercent, type = "l")
+
+// compare number of births per year
+
+present$boys > present$girls
+
+//plot boy-to-girl ratio
+
+present$ratio<-present$boys/present$girls
+plot(present$year, present$ratio, type = "l")
+
+// year with biggest absolute difference
+
+present$diff<-abs(present$girls - present$boys)
+order(present$diff, decreasing = T)
+present[24,]
