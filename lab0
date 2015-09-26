@@ -1,0 +1,8 @@
+// view just counts 
+
+present$girls
+
+// sum of counts
+
+sum(present$girls)
+
