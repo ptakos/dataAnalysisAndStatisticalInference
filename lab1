@@ -1,0 +1,42 @@
+//Unit 1 Lab 1: Introduction to Data
+
+//load dataset
+source("http://www.openintro.org/stat/data/cdc.R")
+
+//cases and variables of this data set
+dim(cdc)
+
+//type of variable is genhlth
+typeof(cdc$genhlth)
+head(cdc$genhlth)
+tail(cdc$genhlth)
+
+//type of variable is weight
+typeof(cdc$weight)
+head(cdc$weight)
+tail(cdc$weight)
+
+//type of variable is smoke100
+typeof(cdc$smoke100)
+head(cdc$smoke100)
+tail(cdc$smoke100)
+
+//smokers by gender
+summary(cdc$gender)
+gender_smokers = table(cdc$gender,cdc$smoke100)
+mosaicplot(gender_smokers)
+
+// proportion of the sample reports in excellent health
+rfd_genhlth <- summary(cdc$genhlth)/20000   // rfd = relative frequency distribution
+rfd_genhlth
+
+//under the age of 23 and have smoked at least 100 cigarettes
+under23 <- subset(cdc, cdc$age < 23 & cdc$smoke100 == "1")
+dim(under23)
+
+//skeweness distribution of BMIs within each health status group
+cdc$bmi<- (cdc$weight/(cdc$height^2))*703
+boxplot(cdc$bmi ~ cdc$genhlth)    //this case right skewed
+
+//relationship between variables
+plot(cdc$weight, cdc$wtdesire)    //moderately strong positive linear association
