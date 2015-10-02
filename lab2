@@ -1,0 +1,2 @@
+// load data for lab2
+load(url("http://www.openintro.org/stat/data/kobe.RData"))
