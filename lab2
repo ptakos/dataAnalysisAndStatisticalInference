@@ -1,2 +1,63 @@
 // load data for lab2
 load(url("http://www.openintro.org/stat/data/kobe.RData"))
+
+//calc_streak function implementation 
+calc_streak <- function(x){
+      y <- rep(0,length(x))
+      y[x == "H"] <- 1
+      y <- c(0, y, 0)
+      wz <- which(y == 0)
+      streak <- diff(wz) - 1
+      return(streak)      
+    }
+
+//streak for kobe$basket
+kobe_streak <- calc_streak(kobe$basket)
+
+//barplot kobe streaks
+barplot(kobe_streak)    // distribution is not unimodal
+barplot(table(kobe_streak))     // Streak lengths of 3 and 4 are low compared to the rest of the distribution
+
+//sort streaks to find median, mean and IQR
+median(sortStreak) <- sort(kobe_streak, decreasing = FALSE)     //typical length is 0
+IQR(sortStreak)     // IQR of the distribution is 1
+
+//kobe - hot hand
+hotHand = 0
+count = 0
+for(i in 1:(nrow(kobe)-2)){
+  if(kobe[i,6]=='M'){
+    if (kobe[i+1,6] ==  'H'){
+      count = count + 1;
+      if (kobe[i+2,6] == 'H'){
+        hotHand = hotHand + 1;
+      }      
+    }
+  }
+}
+hotHand     //sum of first hits followed by a hit
+count     //sum of shots where first was a hit
+
+// How many heads would expect to come up after flipping this unfair coin 100 times?
+
+outcomes <- c("heads", "tails")
+sim_unfair_coin <- sample(outcomes, size = 100, replace = TRUE, prob = c(0.2, 0.8))     // expected heads 20 times
+table(simFairCoin)
+
+//  distribution of streak lengths for the simulated shooter with hit probability = 0.45
+outcomes <- c("H", "M")
+simBasket <- sample(outcomes, size = 133, replace = TRUE, prob = c(0.45, 0.55))
+table(simBasket)
+sim_streak <- calc_streak(simBasket)
+barplot(table(sim_streak))
+
+// 90% of Americans have had the disease chickenpox by the time they reach adulthood. 
+// What is the probability that exactly 92 out of 100 randomly sampled American adults had chickenpox during childhood 
+choose(100,92)*0.90^92*0.10^8
+
+// normal distribution (mean = 24, sd = 4)
+qnorm(0.99, 24, 4)      //  value of element in 99% percentile
+pnorm(34, 24, 4)      //  percentile of element with value 34
+
+choose(100,92)*0.90^92*0.10^8
+sum(dbinom(50:160, 160, 0.28))
