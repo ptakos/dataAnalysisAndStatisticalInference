@@ -1,0 +1,8 @@
+//look up column names
+colnames(cdc)   //choose: "bmi", "age"
+
+//find unique by group of parameters
+t = unique(cdc[c("bmi", "age")])
+
+//count BMIs by age
+ts = count(t, vars = "age")
